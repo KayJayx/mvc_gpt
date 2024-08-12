@@ -1,6 +1,7 @@
 import design.views.main_window_view as mwv
 import controls as cc
 import numpy as np
+import threading
 
 class PlotControlsView():
 
@@ -11,6 +12,8 @@ class PlotControlsView():
     def __init__(self, main_window_view: mwv.MainWindowView) -> None:
         self.main_window_view = main_window_view
 
+        # Create the controls here
+        #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         # Create a window for the controls
         self.control_window        = cc.ChildWindow(
             width=self.main_window_view.control_window_width,
@@ -52,3 +55,4 @@ class PlotControlsView():
         self.angular_label     = cc.Label(label=f"Angular Freq: {'{:.3f}'.format(2 * np.pi * self.frequency_slider.GetValue())}", parent=self.group3, pos=[20, 190])
         self.period_label      = cc.Label(label=f"Period: {'{:.3f}'.format(1 / self.frequency_slider.GetValue())}", parent=self.group3, pos=[20, 210])
         self.normalize_freq    = cc.CheckBox(label="Normalize Frequency", parent=self.group3, pos=[20, 230])
+        #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

@@ -10,6 +10,8 @@ class PlotWindowView():
     def __init__(self, main_window_view: mwv.MainWindowView) -> None:
         self.main_window_view = main_window_view
 
+        # Create the controls here
+        #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         # Create a window just for the plots
         self.plot_window = cc.ChildWindow(
             width=self.main_window_view.plot_window_width,
@@ -50,3 +52,4 @@ class PlotWindowView():
         self.freq_plot.SwitchThemeComponent(theme_component=self.freq_plot.line_theme_component)
         self.freq_plot.SetPlotLineColor(color=[36, 183, 199])
         self.freq_plot.BindTheme()
+        #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
