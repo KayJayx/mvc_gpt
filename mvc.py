@@ -1,8 +1,8 @@
-from design.controllers._controller import Controller
+from design.controllers._controller import MainController
 
 def main() -> None:
 
-    Controller()
+    MainController()
 
     return 0
 
