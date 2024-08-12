@@ -1,4 +1,7 @@
 from __future__ import annotations
+from views.main_window_view import MainWindowView
+from views.plot_window_view import PlotWindowView
+from views.plot_controls_view import PlotControlsView
 
 class Controller():
 
@@ -10,6 +13,11 @@ class Controller():
     """
 
     def __init__(self) -> None:
+
+        # Create views here
+        self.main_window_view   = MainWindowView()
+        self.plot_window_view   = PlotWindowView(self.main_window_view)
+        self.plot_controls_view = PlotControlsView(self.main_window_view)
 
         # Create models here
 
