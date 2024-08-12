@@ -1,5 +1,4 @@
 from __future__ import annotations
-import design.views._view as _view
 
 class Controller():
 
@@ -12,17 +11,13 @@ class Controller():
 
     def __init__(self) -> None:
 
-        # Create an instance of the View class, the idea is to share the entire view with all of the
-        # controller classes such that individual controller subclasses can have the ability to
-        # interact with the view
-        self.view = _view.View()
-
         # Create models here
 
         # Create controllers here
 
         # Run the designer to actually display the info to the screen
-        self.view.designer.Run(self.UpdateWaveform)
+        #self.view.designer.Run(self.UpdateWaveform)
+        pass
 
     def UpdateWaveform(self) -> None:
         """
