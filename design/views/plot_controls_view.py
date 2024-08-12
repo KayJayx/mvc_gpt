@@ -1,7 +1,6 @@
 import design.views.main_window_view as mwv
 import controls as cc
 import numpy as np
-import threading
 
 class PlotControlsView():
 
