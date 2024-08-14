@@ -10,3 +10,8 @@ class PlotWindowController():
     def __init__(self, plot_window_view: PlotWindowView, plot_window_model: PlotWindowModel) -> None:
         self.plot_window_view  = plot_window_view
         self.plot_window_model = plot_window_model
+
+    def UpdatePlotCallback(self) -> None:
+        """
+        Get 
+        """
