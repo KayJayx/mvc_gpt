@@ -32,10 +32,4 @@ class MainController():
         self.plot_controls_controller = PlotControlsController(self.plot_controls_view, self.plot_controls_model)
 
         # Run the main event handler to also render the GUI elements
-        self.main_window_view.Run(self.UpdateWaveform)
-
-    def UpdateWaveform(self) -> None:
-        """
-        The purpose of this function is to update the waveform plot onto the main window
-        """
-        pass
+        self.main_window_view.Run()
