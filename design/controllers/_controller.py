@@ -1,11 +1,7 @@
 from __future__ import annotations
-from views.main_window_view import MainWindowView
-from views.plot_window_view import PlotWindowView
-from views.plot_controls_view import PlotControlsView
-from models.plot_window_model import PlotWindowModel
-from models.plot_controls_model import PlotControlsModel
-from controllers.plot_window_controller import PlotWindowController
-from controllers.plot_controls_controller import PlotControlsController
+from design.views.plot_controls_view import PlotControlsView
+from design.models.plot_controls_model import PlotControlsModel
+from design.controllers.plot_controls_controller import PlotControlsController
 
 class MainController():
 
@@ -18,18 +14,10 @@ class MainController():
 
     def __init__(self) -> None:
 
-        # Create views here
-        self.main_window_view   = MainWindowView()
-        self.plot_window_view   = PlotWindowView(self.main_window_view)
-        self.plot_controls_view = PlotControlsView(self.main_window_view)
-
-        # Create models here
-        self.plot_window_model   = PlotWindowModel()
-        self.plot_controls_model = PlotControlsModel()
-
-        # Create controllers here
-        self.plot_window_controller   = PlotWindowController(self.plot_window_view, self.plot_window_model)
+        # Create the model, view and controller here
+        self.plot_controls_view       = PlotControlsView()
+        self.plot_controls_model      = PlotControlsModel()
         self.plot_controls_controller = PlotControlsController(self.plot_controls_view, self.plot_controls_model)
 
         # Run the main event handler to also render the GUI elements
-        self.main_window_view.Run()
+        self.plot_controls_view.Run(self.plot_controls_controller.UpdatePlotCallback)

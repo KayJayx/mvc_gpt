@@ -1,3 +1,4 @@
+from typing import Tuple
 import threading
 
 class PlotControlsModel():
@@ -7,6 +8,12 @@ class PlotControlsModel():
     """
 
     def __init__(self) -> None:
+        self.__time_plot_x_data          = None
+        self.__time_plot_y_data          = None
+        self.__time_plot_data_lock       = threading.Lock()
+        self.__freq_plot_x_data          = None
+        self.__freq_plot_y_data          = None
+        self.__freq_plot_data_lock       = threading.Lock()
         self.__gen_waveform_button_press = threading.Event()
         self.__clear_plot_button_press   = threading.Event()
         self.__resolution_slider_value   = None
@@ -24,6 +31,36 @@ class PlotControlsModel():
         self.__period_label              = None
         self.__period_label_lock         = threading.Lock()
         self.__normalize_freq_check      = threading.Event()
+
+    def GetTimePlotData(self) -> Tuple[list, list]:
+        """
+        Gets the time plot data for the time plot
+        """
+        with self.__time_plot_data_lock:
+            return self.__time_plot_x_data, self.__time_plot_y_data
+
+    def SetTimePlotData(self, x_data: list, y_data: list) -> None:
+        """
+        Sets the time plot data for the time plot
+        """
+        with self.__time_plot_data_lock:
+            self.__time_plot_x_data = x_data
+            self.__time_plot_y_data = y_data
+
+    def GetFreqPlotData(self) -> Tuple[list, list]:
+        """
+        Gets the frequency plot data for the frequency plot
+        """
+        with self.__freq_plot_data_lock:
+            return self.__freq_plot_x_data, self.__freq_plot_y_data
+
+    def SetFreqPlotData(self, x_data: list, y_data: list) -> None:
+        """
+        Sets the frequency plot data for the frequency plot
+        """
+        with self.__freq_plot_data_lock:
+            self.__freq_plot_x_data = x_data
+            self.__freq_plot_y_data = y_data
 
     def SetGenWaveformButtonPress(self) -> None:
         """
@@ -61,98 +98,98 @@ class PlotControlsModel():
         """
         return self.__clear_plot_button_press.is_set()
 
-    def GetResolutionSliderValue(self) -> str:
+    def GetResolutionSliderValue(self) -> int:
         """
         Get the resolution slider value
         """
         with self.__resolution_slider_lock:
             return self.__resolution_slider_value
         
-    def SetResolutionSliderValue(self, value: str) -> None:
+    def SetResolutionSliderValue(self, value: int) -> None:
         """
         Set the resolution slider value
         """
         with self.__resolution_slider_lock:
             self.__resolution_slider_value = value
 
-    def GetAmplitudeSliderValue(self) -> str:
+    def GetAmplitudeSliderValue(self) -> float:
         """
         Get the amplitude slider value
         """
         with self.__amplitude_slider_lock:
             return self.__amplitude_slider_value
         
-    def SetAmplitudeSliderValue(self, value: str) -> None:
+    def SetAmplitudeSliderValue(self, value: float) -> None:
         """
         Set the amplitude slider value
         """
         with self.__amplitude_slider_lock:
             self.__amplitude_slider_value = value
 
-    def GetHeightSliderValue(self) -> str:
+    def GetHeightSliderValue(self) -> float:
         """
         Get the height slider value
         """
         with self.__height_slider_lock:
             return self.__height_slider_value
         
-    def SetHeightSliderValue(self, value: str) -> None:
+    def SetHeightSliderValue(self, value: float) -> None:
         """
         Set the height slider value
         """
         with self.__height_slider_lock:
             self.__height_slider_value = value
 
-    def GetPhaseSliderValue(self) -> str:
+    def GetPhaseSliderValue(self) -> float:
         """
         Get the phase slider value
         """
         with self.__phase_slider_lock:
             return self.__phase_slider_value
         
-    def SetPhaseSliderValue(self, value: str) -> None:
+    def SetPhaseSliderValue(self, value: float) -> None:
         """
         Set the phase slider value
         """
         with self.__phase_slider_lock:
             self.__phase_slider_value = value
 
-    def GetFrequencySliderValue(self) -> str:
+    def GetFrequencySliderValue(self) -> float:
         """
         Get the frequency slider value
         """
         with self.__frequency_slider_lock:
             return self.__frequency_slider_value
         
-    def SetFrequencySliderValue(self, value: str) -> None:
+    def SetFrequencySliderValue(self, value: float) -> None:
         """
         Set the frequency slider value
         """
         with self.__frequency_slider_lock:
             self.__frequency_slider_value = value
 
-    def GetAngularLabel(self) -> str:
+    def GetAngularLabel(self) -> float:
         """
         Get the angular label
         """
         with self.__angular_label_lock:
             return self.__angular_label
         
-    def SetAngularLabel(self, label: str) -> None:
+    def SetAngularLabel(self, label: float) -> None:
         """
         Set the angular label
         """
         with self.__angular_label_lock:
             self.__angular_label = label
 
-    def GetPeriodLabel(self) -> str:
+    def GetPeriodLabel(self) -> float:
         """
         Get the period label
         """
         with self.__period_label_lock:
             return self.__period_label
         
-    def SetPeriodLabel(self, label: str) -> None:
+    def SetPeriodLabel(self, label: float) -> None:
         """
         Set the period label
         """
